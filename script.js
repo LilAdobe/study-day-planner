@@ -7,15 +7,6 @@ let time = moment().format("HH");
 let sb = $(".saveBtn");
 let tb = $(".time-block");
 
-
-
-tb.each(function () {
-    let el = $(this);
-    let newClass = getClass(el); el.children().addClass(newClass);
-});
-
-
-
 function getClass(element) {
     const id = element.attr("id")
     switch (true) {
@@ -30,6 +21,10 @@ function getClass(element) {
     }
 }
 
+tb.each(function () {
+    let el = $(this);
+    let newClass = getClass(el); el.children().addClass(newClass);
+});
 
 
 sb.on("click", function () {
