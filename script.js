@@ -1,66 +1,40 @@
-var today = moment();
+let today = moment();
 $("#currentDay").text(today.format("dddd, MMMM Do YYYY"));
 
 
-var container = $(".container")
-var currentTime = moment().format("HH");
-var saveButton = $(".saveBtn");
-var timeBlock = $(".time-block");
+let container = $(".container")
+let time = moment().format("HH");
+let sb = $(".saveBtn");
+let tb = $(".time-block");
 
 
 
-
-
-timeBlock.each(function () {
-    var el = $(this);
-    var newClass = getClass(el);el.children().eq(1).addClass(newClass);
+tb.each(function () {
+    let el = $(this);
+    let newClass = getClass(el); el.children().addClass(newClass);
 });
 
 
 
 function getClass(element) {
-    var id = element.attr("id");
-    if (parseInt(id) === parseInt(currentTime)) {
-        return "present";
-    }
-    else if (parseInt(id) < parseInt(currentTime)) {
-        return "past";
-    }
-    else {
-        return "future";
-    }
-}
-
-function getClass(element){
     const id = element.attr("id")
-    switch(id) {
-        case parseInt(id) === parseInt(currentTime):
+    switch (true) {
+        case parseInt(id) === parseInt(time):
             return "present"
-        case parseInt(id) < parseInt(currentTime):
-            return "past";
-            default :"future";
+            break
+        case parseInt(id) < parseInt(time):
+            return "past"
+            break
+        default:
+           return "future"
     }
 }
 
 
-// function getClass(element) {
-//     var id = element.attr("id");
-//     switch (id) {
-//         case (parseInt(id) === parseInt(currentTime)):
-//             return 'present';
-//         case (parseInt(id) < parseInt(currentTime)):
-//             return 'past';
-//         default:
-//         return 'future'
 
-//     }
-// }
-
-
-
-saveButton.on("click", function () {
-    var saved = $(event.target).siblings(".description").val();
-    var id = $(event.target).parent().attr("id");
+sb.on("click", function () {
+    const saved = $(event.target).siblings(".description").val();
+    const id = $(event.target).parent().attr("id");
 
     localStorage.setItem(id, saved);
 });
@@ -77,3 +51,35 @@ $("#17 .description").val(localStorage.getItem("17"));
 $("#22 .description").val(localStorage.getItem("22"));
 
 
+// tB.each(function () {
+
+//     if (parseInt(time) === parseInt($(this).attr("id"))) {
+//         $(this).children("description").addClass("present");
+//     }
+//     else if (parseInt($(this).attr("id")) < parseInt(time)) {
+//         $(this).children("description").addClass("past");
+//     }
+//     else {
+//         $(this).children("description").addClass("future");
+//     }
+// });
+
+
+
+
+
+
+
+
+// function getClass(element) {
+//     var id = element.attr("id");
+//     switch (id) {
+//         case (parseInt(id) === parseInt(currentTime)):
+//             return 'present';
+//         case (parseInt(id) < parseInt(currentTime)):
+//             return 'past';
+//         default:
+//         return 'future'
+
+//     }
+// }
